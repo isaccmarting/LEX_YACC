@@ -10,7 +10,7 @@
 
 [a-zA-Z0-9\-_]+ {words++; chars += yyleng; }
 \n {chars++; lines++; }
-. {chars++;}
+. {chars++; }
 
 %%
 
