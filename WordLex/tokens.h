@@ -49,4 +49,16 @@ extern YYSTYPE yylval;
 # define FUNCTION 297
 # define REAL 298
 # define TYPE 299
-
+# define INT 300
+# define SHORT 301
+# define LONG 302
+# define UNSIGNED 303
+# define FLOAT 304
+# define DOUBLE 305
+# define CHAR 306
+# define CHARACTER 307
+# define BIT_AND 308
+# define BIT_OR 309
+# define BIT_XOR 310
+# define BANG 311
+# define RETURN 312

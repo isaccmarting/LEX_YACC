@@ -10,11 +10,11 @@ errormsg.o: errormsg.c errormsg.h util.h
 lex.yy.o: lex.yy.c tokens.h errormsg.h util.h
 	gcc -g -c lex.yy.c
 
-lex.yy.c: tiger.lex
-	flex tiger.lex
+lex.yy.c: word.lex
+	flex word.lex
 
 util.o: util.c util.h
 	gcc -g -c util.c
 
 clean: 
-	rm -f a.out util.o driver.o lex.yy.o lex.yy.c errormsg.o
+	rm -f lextest util.o driver.o lex.yy.o lex.yy.c errormsg.o
