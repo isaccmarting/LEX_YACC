@@ -24,7 +24,7 @@ factor: term
 | term MOD factor {$$ = $1 % $3; }
 ; 
 term: expval
-| expval EXPONENT expval {$$ = pow($1, $3); } 
+| expval EXPONENT term {$$ = pow($1, $3); } 
 ; 
 expval: NUMBER
 | LP exp RP {$$ = $2; }
