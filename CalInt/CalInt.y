@@ -15,13 +15,13 @@ callist: /*empty*/
 | callist exp EOL {printf("= %d\n", $2); }
 ;
 exp: factor
-| factor ADD exp {$$ = $1 + $3; }
-| factor MINUS exp {$$ = $1 - $3; }
+| exp ADD factor {$$ = $1 + $3; }
+| exp MINUS factor {$$ = $1 - $3; }
 ;
 factor: term
-| term MUL factor {$$ = $1 * $3; }
-| term DIV factor {$$ = $1 / $3; }
-| term MOD factor {$$ = $1 % $3; }
+| factor MUL term {$$ = $1 * $3; }
+| factor DIV term {$$ = $1 / $3; }
+| factor MOD term {$$ = $1 % $3; }
 ; 
 term: expval
 | expval EXPONENT term {$$ = pow($1, $3); } 

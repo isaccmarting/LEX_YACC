@@ -26,21 +26,21 @@ callist: /*empty*/
         printf("= %d\n", $2.IntValue); }
 ;
 exp: factor
-| factor ADD exp {
+| exp ADD factor {
     $$.IsDouble = $1.IsDouble | $3.IsDouble; 
     $$.IntValue = $1.IntValue + $3.IntValue; 
     $$.DoubleValue = $1.DoubleValue + $3.DoubleValue; }
-| factor MINUS exp {
+| exp MINUS factor {
     $$.IsDouble = $1.IsDouble | $3.IsDouble; 
     $$.IntValue = $1.IntValue - $3.IntValue; 
     $$.DoubleValue = $1.DoubleValue - $3.DoubleValue; }
 ;
 factor: term
-| term MUL factor {
+| factor MUL term {
     $$.IsDouble = $1.IsDouble | $3.IsDouble; 
     $$.IntValue = $1.IntValue * $3.IntValue; 
     $$.DoubleValue = $1.DoubleValue * $3.DoubleValue; }
-| term DIV factor {
+| factor DIV term {
     $$.IsDouble = $1.IsDouble | $3.IsDouble; 
     $$.IntValue = $1.IntValue / $3.IntValue; 
     $$.DoubleValue = $1.DoubleValue / $3.DoubleValue; }
