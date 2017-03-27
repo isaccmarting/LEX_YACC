@@ -1,31 +1,32 @@
 %{
 #include <stdio.h>
+#include <math.h>
 #define YYSTYPE int
 
 void yyerror(char *s); 
-extern YYSTYPE yylex(void); 
+extern int yylex(void); 
 %}
 
-%token XOR ADD MINUS MUL DIV MOD
+%token ADD MINUS MUL DIV MOD EXPONENT
 %token LP NUMBER RP
 %token EOL
 %%
 callist: /*empty*/
 | callist exp EOL {printf("= %d\n", $2); }
 ;
-exp: result
-| result XOR exp {$$ = $1 ^ $3; }
-; 
-result: factor
-| factor ADD result {$$ = $1 + $3; }
-| factor MINUS result {$$ = $1 - $3; }
+exp: factor
+| factor ADD exp {$$ = $1 + $3; }
+| factor MINUS exp {$$ = $1 - $3; }
 ;
 factor: term
 | term MUL factor {$$ = $1 * $3; }
 | term DIV factor {$$ = $1 / $3; }
 | term MOD factor {$$ = $1 % $3; }
 ; 
-term: NUMBER
+term: expval
+| expval EXPONENT expval {$$ = pow($1, $3); } 
+; 
+expval: NUMBER
 | LP exp RP {$$ = $2; }
 | MINUS NUMBER {$$ = -$2; }
 ;

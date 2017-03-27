@@ -7,12 +7,12 @@ int yywrap(void);
 %}
 
 %%
-"^"       {return XOR; }
 "+"       {return ADD; }
 "-"       {return MINUS; }
 "*"       {return MUL; }
 "/"       {return DIV; }
 "%"       {return MOD; }
+"^"       {return EXPONENT; }
 "("       {return LP; }
 ")"       {return RP; }
 [0-9]+    {yylval = atoi(yytext); return NUMBER; }
