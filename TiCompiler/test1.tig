@@ -1,0 +1,9 @@
+/* an array type and an array variable */
+let
+	type  arrtype = array of int
+	var arr1:arrtype := arrtype [10] of 0
+	var i := 0
+in
+	while i < 3 do
+		i := "\10\"nihao\"\t\t\t\'shijie\'\n"
+end
