@@ -30,7 +30,7 @@ Identifier [a-zA-Z][a-zA-Z0-9_]*
 Integer    [0-9]+
 
 %x COMMENT
-%x SSTRING
+%x LSTRING
 
 %%
 
@@ -65,6 +65,7 @@ Integer    [0-9]+
 type                    {adjust(); return TYPE; }
 var                     {adjust(); return VAR; }
 int                     {adjust(); return INT; }
+string                  {adjust(); return STRING; }
 array                   {adjust(); return ARRAY; }
 of                      {adjust(); return OF; }
 function                {adjust(); return FUNCTION; }
@@ -84,7 +85,7 @@ end                     {adjust(); return END; }
 {Identifier}            {adjust(); yylval.sval = yytext; return ID; }
 {Integer}               {adjust(); yylval.ival = atoi(yytext); return INTEGER; }
 
-\"                      {adjust(); BEGIN SSTRING; i = 0; }
+\"                      {adjust(); BEGIN LSTRING; i = 0; }
 "/*"                    {adjust(); BEGIN COMMENT; }
 }
 
@@ -93,8 +94,8 @@ end                     {adjust(); return END; }
 "*/"                    {adjust(); BEGIN INITIAL; }
 }
 
-<SSTRING>{
-\"                      {adjust(); temp[i] = 0; yylval.sval = strdup(temp); BEGIN INITIAL; return STRING; }
+<LSTRING>{
+\"                      {adjust(); temp[i] = 0; yylval.sval = strdup(temp); BEGIN INITIAL; return SSTRING; }
 \\\"                    {adjust(); temp[i++] = '\"'; }
 \\\'                    {adjust(); temp[i++] = '\''; }
 \\n                     {adjust(); temp[i++] = '\n'; }

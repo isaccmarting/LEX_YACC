@@ -50,4 +50,5 @@ extern YYSTYPE yylval;
 # define TYPE 299
 
 # define INTEGER 300
+# define SSTRING 301
 
