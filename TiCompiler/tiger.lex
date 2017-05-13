@@ -1,8 +1,8 @@
 /*  */
 %{
-
 #include "errormsg.h"
-#include "tokens.h"
+/* #include "tokens.h" */
+#include "tiger.tab.h"
 
 #define MAX_STRING_LEN 100 
 
